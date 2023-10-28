@@ -1,31 +1,16 @@
 # Name: Erik Griswold
+# File: Sudoku.py
 
 """
-Replace this generic text with a description of what your submission
-depicts or any guidelines I should have about how it works or operates
+Creates a game of sudoku
 """
-
-# Now you are free to import whatever you need from pgl and take it from here!
-# I'll be excited to see these!
-
-
 
 from pgl import GWindow, GRect, GLabel
 import random
 
 # constants
 
-GLABEL_GRID = [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    []
-]
+GLABEL_GRID = [[] for i in range(9)]
 
 GWINDOW_SIZE = 901
 INSET = 50
@@ -280,21 +265,22 @@ def click_action(click):
 # when key action
 def key_action(key):
 
-    if key.get_key().isnumeric() == True and gw.selected_is_const == False and key.get_key() != "0":
-        GLABEL_GRID[gw.click_row][gw.click_col].set_label(key.get_key())
-        GLABEL_GRID[gw.click_row][gw.click_col].send_to_front()
-        gw.USER_GRID[gw.click_col][gw.click_row] = int(key.get_key())
-    
-    elif key.get_key() == "<SPACE>" or key.get_key() == "<BACKSPACE>":
-        GLABEL_GRID[gw.click_row][gw.click_col].set_label(" ")
-        GLABEL_GRID[gw.click_row][gw.click_col].send_to_front()
-        gw.USER_GRID[gw.click_col][gw.click_row] = 0
-    
-    elif key.get_key() == "<RETURN>":
-        if check_game() == True: 
-            you_win()
-        else:
-            try_again()
+    if gw.first_action == False:
+        if key.get_key().isnumeric() == True and gw.selected_is_const == False and key.get_key() != "0":
+            GLABEL_GRID[gw.click_row][gw.click_col].set_label(key.get_key())
+            GLABEL_GRID[gw.click_row][gw.click_col].send_to_front()
+            gw.USER_GRID[gw.click_col][gw.click_row] = int(key.get_key())
+        
+        elif key.get_key() == "<SPACE>" or key.get_key() == "<BACKSPACE>":
+            GLABEL_GRID[gw.click_row][gw.click_col].set_label(" ")
+            GLABEL_GRID[gw.click_row][gw.click_col].send_to_front()
+            gw.USER_GRID[gw.click_col][gw.click_row] = 0
+        
+        elif key.get_key() == "<RETURN>":
+            if check_game() == True: 
+                you_win()
+            else:
+                try_again()
 
 # starting window
 def play_sudoku():

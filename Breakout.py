@@ -1,12 +1,8 @@
-######################################################################
 # Name: Erik Griswold
-# Collaborators (if any): N/A
-# Section leader's name: Faye Lawson
-# List of extensions made (if any): corner bounces & messages
-######################################################################
+# File: Breakout.py
 
 """
-This program (once you have finished it) implements the Breakout game
+This program implements the Breakout game
 """
 
 from pgl import GWindow, GOval, GRect, GLabel
